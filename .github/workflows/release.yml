@@ -13,6 +13,7 @@ jobs:
         shell: bash
         run: |
           sudo apt install doxygen
+          doxygen -g
           doxygen
 
       - uses: actions/upload-artifact@v4
