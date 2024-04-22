@@ -1,33 +1,35 @@
 from node import Node
 
 
+## @brief  Tree class for binary tree
 class Tree:
-    """ Tree class for binary tree """
 
+    ## @brief  Constructor for Tree class
     def __init__(self):
-        """ Constructor for Tree class """
         self.root = None
 
+    ## @brief  Method for get root of the tree
     def getRoot(self):
-        """ Method for get root of the tree """
         return self.root
 
+    ## @brief  Method for add data to the tree
     def add(self, data):
-        """ Method for add data to the tree """
         if self.root is None:
             self.root = Node(data)
         else:
             self._add(data, self.root)
 
+    ## @brief Method for add data to the tree
+    #
+    #
+    # @param		data	data to add
+    #
+    # @return
+    # @return		            None
+    #
+    #
+    # @protected
     def _add(self, data, node):
-        """Method for add data to the tree
-
-        Args:
-            data (int): data to add
-
-        Returns:
-            None
-        """
         if data < node.data:
             if node.left is not None:
                 self._add(data, node.left)
@@ -39,15 +41,15 @@ class Tree:
             else:
                 node.right = Node(data)
 
+    ## @brief Method for find data in the tree
+    #
+    #
+    # @param		data	data to find
+    #
+    # @return
+    # @return		Node	node with data
+    #
     def find(self, data):
-        """Method for find data in the tree
-
-        Args:
-            data (int): data to find
-
-        Returns:
-            Node: node with data
-        """
         if self.root is not None:
             return self._find(data, self.root)
         else:
@@ -62,27 +64,26 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
-        # TODO 1
         self.root = None
 
     def printTree(self):
-        # TODO 1
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
-        # TODO 1
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO 2
-        pass
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
 
     def _printPostorderTree(self, node):
-        # TODO 2
-        pass
-
-
+        if node is not None:
+            self._printPostorderTree(node.left)
+            self._printPostorderTree(node.right)
+            print(str(node.data) + ' ')
