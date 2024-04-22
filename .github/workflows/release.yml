@@ -1,0 +1,21 @@
+name: Documentation
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  run:
+    name: Publish documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate
+        shell: bash
+        run: |
+          sudo apt install doxygen
+          doxygen
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: html # or path/to/artifact
